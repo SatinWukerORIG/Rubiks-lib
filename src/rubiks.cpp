@@ -14,8 +14,11 @@ struct Cube{
 
     void printCube(){
         for(int i = 0; i < 6; i++){
-            cout<<endl;
+            cout<<"\n------------------"<<endl;
             for(int j = 0; j < 9; j++){
+                if(j % 3 == 0 && j != 0){
+                    cout<<endl;
+                }
                 cout<<cube[i][j]<<" ";
             }
         }
@@ -116,21 +119,13 @@ struct Cube{
         int temp_green[3] = {cube[1][0], cube[1][1], cube[1][2]};
         /*SIDES*/
         // green -> red
-        cube[1][0] = cube[5][0];
-        cube[1][1] = cube[5][1];
-        cube[1][2] = cube[5][2];
+        cube[1][0]=cube[5][0]; cube[1][1]=cube[5][1]; cube[1][2]=cube[5][2];
         // red -> blue
-        cube[5][0] = cube[3][8];
-        cube[5][1] = cube[3][7];
-        cube[5][2] = cube[3][6];
+        cube[5][0]=cube[3][8]; cube[5][1]=cube[3][7]; cube[5][2]=cube[3][6];
         // blue -> orange
-        cube[3][8] = cube[4][0];
-        cube[3][7] = cube[4][1];
-        cube[3][6] = cube[4][2];
+        cube[3][8]=cube[4][0]; cube[3][7]=cube[4][1]; cube[3][6]=cube[4][2];
         // orange -> green
-        cube[4][0] = temp_green[0];
-        cube[4][1] = temp_green[1];
-        cube[4][2] = temp_green[2];
+        cube[4][0]=temp_green[0]; cube[4][1]=temp_green[1]; cube[4][2]=temp_green[2];
 
         char corner_1 = cube[0][2], side_1 = cube[0][1];
         /*swap CORNERS*/
@@ -149,22 +144,14 @@ struct Cube{
         int temp_red[3] = {cube[5][0], cube[5][1], cube[5][2]};
         /*SIDES*/
         // red -> green
-        cube[5][0] = cube[1][0];
-        cube[5][1] = cube[1][1];
-        cube[5][2] = cube[1][2];
+        cube[5][0]=cube[1][0]; cube[5][1]=cube[1][1]; cube[5][2]=cube[1][2];
         // green -> orange
-        cube[1][0] = cube[4][0];
-        cube[1][1] = cube[4][1];
-        cube[1][2] = cube[4][2];
+        cube[1][0]=cube[4][0]; cube[1][1]=cube[4][1]; cube[1][2]=cube[4][2];
         // orange -> blue
-        cube[4][0] = cube[3][8];
-        cube[4][1] = cube[3][7];
-        cube[4][2] = cube[3][6];
+        cube[4][0]=cube[3][8]; cube[4][1]=cube[3][7]; cube[4][2]=cube[3][6];
 
         // blue -> red
-        cube[3][8] = temp_red[0];
-        cube[3][7] = temp_red[1];
-        cube[3][6] = temp_red[2];
+        cube[3][8]=temp_red[0]; cube[3][7]=temp_red[1]; cube[3][6]=temp_red[2];
 
         char corner_1 = cube[0][2], side_1 = cube[0][1];
         /*swap CORNERS*/
@@ -178,15 +165,32 @@ struct Cube{
         cube[0][7] = cube[0][3];
         cube[0][3] = side_1;
     }
+
+    void turnF(){
+
+    }
+
+    void turnFapos(){
+        
+    }
 };
 
 
 int main(){
     struct Cube Cub;
 
-    Cub.turnR();
-    Cub.turnL();
-    Cub.turnUapos();
+    Cub.turnR(); Cub.turnR();
+    Cub.turnL(); Cub.turnL();
+    Cub.turnU(); Cub.turnU();
+
+    Cub.turnR(); Cub.turnR();
+    Cub.turnL(); Cub.turnL();
+    Cub.turnU(); Cub.turnU();
+    
+    Cub.turnR(); Cub.turnR();
+    Cub.turnL(); Cub.turnL();
+    Cub.turnU(); Cub.turnU();
+
     Cub.printCube();
 
     return 0;
