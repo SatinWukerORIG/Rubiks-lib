@@ -1,2 +1,2 @@
-g++ rubiks.cpp -o rubiks.exe
+g++ rubiks.cpp -o rubiks.exe -Ofast
 rubiks.exe
