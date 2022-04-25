@@ -12,6 +12,34 @@ struct Cube{
         {'R','R','R','R','R','R','R','R','R'}  // red
     };
 
+    void _swap_surfaces(int face){
+        char corner_1 = cube[face][2], side_1 = cube[face][1];
+        /*swap CORNERS*/
+        cube[face][2] = cube[face][0];
+        cube[face][0] = cube[face][6];
+        cube[face][6] = cube[face][8];
+        cube[face][8] = corner_1;
+        /*SIDE CUBES*/
+        cube[face][1] = cube[face][3];
+        cube[face][3] = cube[face][7];
+        cube[face][7] = cube[face][5];
+        cube[face][5] = side_1;
+    }
+
+    void _swap_surfaces_c(int face){
+        char corner_1 = cube[face][2], side_1 = cube[face][1];
+        /*swap CORNERS*/
+        cube[face][2] = cube[face][8];
+        cube[face][8] = cube[face][6];
+        cube[face][6] = cube[face][0];
+        cube[face][0] = corner_1;
+        /*SIDE CUBES*/
+        cube[face][1] = cube[face][5];
+        cube[face][5] = cube[face][7];
+        cube[face][7] = cube[face][3];
+        cube[face][3] = side_1;
+    }
+
     void printCube(){
         for(int i = 0; i < 6; i++){
             cout<<"\n------------------"<<endl;
@@ -24,7 +52,7 @@ struct Cube{
         }
     }
 
-    void turnR(){
+    void R(){
         /*
             R: [3, 6, 9]
             white -> green
@@ -44,9 +72,10 @@ struct Cube{
         cube[3][5] = temp_white[1];
         cube[3][8] = temp_white[2];
 
+        _swap_surfaces(5);
     };
 
-    void turnRapos(){
+    void R_(){
         /*
             R': [3, 6, 9]
             white -> blue
@@ -54,20 +83,21 @@ struct Cube{
             yellow -> green
             green -> white
         */
-        char temp_blue[3] = {cube[3][0], cube[3][3], cube[3][6]};
+        char temp_blue[3] = {cube[3][2], cube[3][5], cube[3][8]};
         for(int i = 3; i >= 1; i--){
             cube[i][2] = cube[i - 1][2];
             cube[i][5] = cube[i - 1][5];
             cube[i][8] = cube[i - 1][8];
         }
 
-        cube[0][0] = temp_blue[0];
-        cube[0][3] = temp_blue[1];
-        cube[0][6] = temp_blue[2];
+        cube[0][2] = temp_blue[0];
+        cube[0][5] = temp_blue[1];
+        cube[0][8] = temp_blue[2];
 
+        _swap_surfaces_c(5);
     };
 
-    void turnL(){
+    void L(){
         /*
             L: [1, 4, 7]
             while -> blue
@@ -85,9 +115,11 @@ struct Cube{
         cube[0][0] = temp_blue[0];
         cube[0][3] = temp_blue[1];
         cube[0][6] = temp_blue[2];
+
+        _swap_surfaces(4);
     }
 
-    void turnLapos(){
+    void L_(){
         /*
             L': [1, 4, 7]
             white -> green
@@ -106,9 +138,11 @@ struct Cube{
         cube[3][0] = temp_white[0];
         cube[3][3] = temp_white[1];
         cube[3][6] = temp_white[2];
+
+        _swap_surfaces_c(4);
     }
 
-    void turnU(){
+    void U(){
         /*
             U: [1][all]
             red -> green
@@ -127,20 +161,10 @@ struct Cube{
         // orange -> green
         cube[4][0]=temp_green[0]; cube[4][1]=temp_green[1]; cube[4][2]=temp_green[2];
 
-        char corner_1 = cube[0][2], side_1 = cube[0][1];
-        /*swap CORNERS*/
-        cube[0][2] = cube[0][0];
-        cube[0][0] = cube[0][6];
-        cube[0][6] = cube[0][8];
-        cube[0][8] = corner_1;
-        /*SIDE CUBES*/
-        cube[0][1] = cube[0][3];
-        cube[0][3] = cube[0][7];
-        cube[0][7] = cube[0][5];
-        cube[0][5] = side_1;
+        _swap_surfaces(0);
     }
 
-    void turnUapos(){
+    void U_(){
         char temp_red[3] = {cube[5][0], cube[5][1], cube[5][2]};
         /*SIDES*/
         // red -> green
@@ -153,57 +177,95 @@ struct Cube{
         // blue -> red
         cube[3][8]=temp_red[0]; cube[3][7]=temp_red[1]; cube[3][6]=temp_red[2];
 
-        char corner_1 = cube[0][2], side_1 = cube[0][1];
-        /*swap CORNERS*/
-        cube[0][2] = cube[0][8];
-        cube[0][8] = cube[0][6];
-        cube[0][6] = cube[0][0];
-        cube[0][0] = corner_1;
-        /*SIDE CUBES*/
-        cube[0][1] = cube[0][5];
-        cube[0][5] = cube[0][7];
-        cube[0][7] = cube[0][3];
-        cube[0][3] = side_1;
+        _swap_surfaces_c(0);
     }
 
-    void turnF(){
+    void F(){
         char temp_white[3] = {cube[0][6], cube[0][7], cube[0][8]};
 
-        cube[0][6] = cube[4][2];
+        cube[0][6] = cube[4][8];
         cube[0][7] = cube[4][5];
-        cube[0][8] = cube[4][8];
+        cube[0][8] = cube[4][2];
 
         cube[4][2] = cube[2][0];
         cube[4][5] = cube[2][1];
         cube[4][8] = cube[2][2];
 
-        cube[2][0] = cube[5][0];
+        cube[2][0] = cube[5][6];
         cube[2][1] = cube[5][3];
-        cube[2][2] = cube[5][6];
+        cube[2][2] = cube[5][0];
 
         cube[5][0] = temp_white[0];
         cube[5][3] = temp_white[1];
         cube[5][6] = temp_white[2];
+
+        _swap_surfaces(1);
     }
 
-    void turnFapos(){
+    void F_(){
         char temp_white[3] = {cube[0][6], cube[0][7], cube[0][8]};
 
         cube[0][6] = cube[5][0];
         cube[0][7] = cube[5][3];
         cube[0][8] = cube[5][6];
 
-        cube[5][0] = cube[2][0];
+        cube[5][0] = cube[2][2];
         cube[5][3] = cube[2][1];
-        cube[5][6] = cube[2][2];
+        cube[5][6] = cube[2][0];
 
         cube[2][0] = cube[4][2];
         cube[2][1] = cube[4][5];
         cube[2][2] = cube[4][8];
 
-        cube[4][2] = temp_white[0];
+        cube[4][2] = temp_white[2];
         cube[4][5] = temp_white[1];
-        cube[4][8] = temp_white[2];
+        cube[4][8] = temp_white[0];
+
+        _swap_surfaces_c(1);
+    }
+
+    void B(){
+        char temp_white[3] = {cube[0][0], cube[0][1], cube[0][2]};
+
+        cube[0][0] = cube[5][2];
+        cube[0][1] = cube[5][5];
+        cube[0][2] = cube[5][8];
+
+        cube[5][2] = cube[2][8];
+        cube[5][5] = cube[2][7];
+        cube[5][8] = cube[2][6];
+
+        cube[2][6] = cube[4][0];
+        cube[2][7] = cube[4][3];
+        cube[2][8] = cube[4][6];
+
+        cube[4][0] = temp_white[2];
+        cube[4][3] = temp_white[1];
+        cube[4][6] = temp_white[0];
+
+        _swap_surfaces(3);
+    }
+
+    void B_(){
+        char temp_white[3] = {cube[0][0], cube[0][1], cube[0][2]};
+
+        cube[0][0] = cube[4][0];
+        cube[0][1] = cube[4][3];
+        cube[0][2] = cube[4][6];
+
+        cube[4][0] = cube[2][6];
+        cube[4][3] = cube[2][7];
+        cube[4][6] = cube[2][8];
+
+        cube[2][6] = cube[5][8];
+        cube[2][7] = cube[5][7];
+        cube[2][8] = cube[5][6];
+
+        cube[5][2] = temp_white[0];
+        cube[5][5] = temp_white[1];
+        cube[5][8] = temp_white[2];
+
+        _swap_surfaces_c(3);
     }
 };
 
@@ -211,8 +273,35 @@ struct Cube{
 int main(){
     struct Cube Cub;
 
-    Cub.turnF();
-    Cub.turnFapos();
+    Cub.R(); Cub.U(); Cub.R_(); Cub.U_();
+    Cub.R_(); Cub.F(); Cub.R(); Cub.R(); Cub.U_();
+    Cub.R_(); Cub.U_(); Cub.R(); Cub.U(); Cub.R_(); Cub.F_();
+
+    /*
+        W W W
+        W W W
+        W W W
+        ------------------
+        G G R
+        G G G
+        G G G
+        ------------------
+        Y Y Y
+        Y Y Y
+        Y Y Y
+        ------------------
+        B B B
+        B B B
+        B B R
+        ------------------
+        O R O
+        O O O
+        O O O
+        ------------------
+        B O G
+        R R R
+        R R R
+    */
 
     Cub.printCube();
 
