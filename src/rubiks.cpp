@@ -267,43 +267,47 @@ struct Cube{
 
         _swap_surfaces_c(3);
     }
+
+    void D(){
+        char temp_red[3] = {cube[5][6], cube[5][7], cube[5][8]};
+        /*SIDES*/
+        // red -> green
+        cube[5][6]=cube[1][6]; cube[5][7]=cube[1][7]; cube[5][8]=cube[1][8];
+        // green -> orange
+        cube[1][6]=cube[4][6]; cube[1][7]=cube[4][7]; cube[1][8]=cube[4][8];
+        // orange -> blue
+        cube[4][6]=cube[3][2]; cube[4][7]=cube[3][1]; cube[4][8]=cube[3][0];
+
+        // blue -> red
+        cube[3][2]=temp_red[0]; cube[3][1]=temp_red[1]; cube[3][0]=temp_red[2];
+
+        _swap_surfaces(2);
+    }
+
+    void D_(){
+        char temp_green[3] = {cube[1][6], cube[1][7], cube[1][8]};
+        /*SIDES*/
+        // green -> red
+        cube[1][6]=cube[5][6]; cube[1][7]=cube[5][7]; cube[1][8]=cube[5][8];
+        // red -> blue
+        cube[5][6]=cube[3][2]; cube[5][7]=cube[3][1]; cube[5][8]=cube[3][0];
+        // blue -> orange
+        cube[3][0]=cube[4][8]; cube[3][1]=cube[4][7]; cube[3][2]=cube[4][6];
+        // orange -> green
+        cube[4][6]=temp_green[0]; cube[4][7]=temp_green[1]; cube[4][8]=temp_green[2];
+        _swap_surfaces_c(2);
+    }
 };
 
 
 int main(){
-    struct Cube Cub;
+    struct Cube cub;
 
-    Cub.R(); Cub.U(); Cub.R_(); Cub.U_();
-    Cub.R_(); Cub.F(); Cub.R(); Cub.R(); Cub.U_();
-    Cub.R_(); Cub.U_(); Cub.R(); Cub.U(); Cub.R_(); Cub.F_();
+    cub.R(); cub.U(); cub.R_(); cub.U_();
+    cub.R_(); cub.F(); cub.R(); cub.R(); cub.U_();
+    cub.R_(); cub.U_(); cub.R(); cub.U(); cub.R_(); cub.F_();
 
-    /*
-        W W W
-        W W W
-        W W W
-        ------------------
-        G G R
-        G G G
-        G G G
-        ------------------
-        Y Y Y
-        Y Y Y
-        Y Y Y
-        ------------------
-        B B B
-        B B B
-        B B R
-        ------------------
-        O R O
-        O O O
-        O O O
-        ------------------
-        B O G
-        R R R
-        R R R
-    */
-
-    Cub.printCube();
+    cub.printCube();
 
     return 0;
 }
