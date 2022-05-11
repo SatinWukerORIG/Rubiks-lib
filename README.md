@@ -1,5 +1,5 @@
 # Rubiks
-A Rubik's Cube scrambler &amp; solver written in C++, for my new programming language Rubiks-Lang
+A Rubik's Cube scrambler written in C++
 
 # Run Code
 ## On Windows
