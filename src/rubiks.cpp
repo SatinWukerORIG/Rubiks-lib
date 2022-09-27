@@ -50,6 +50,7 @@ struct Cube{
                 cout<<cube[i][j]<<" ";
             }
         }
+	cout << '\n';
     }
 
     void R(){
