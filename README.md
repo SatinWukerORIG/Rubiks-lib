@@ -1,8 +1,8 @@
 # Rubiks
 A Rubik's Cube scrambler written in C++
 
-# Run Code
-## On Windows
+# Build & Run
+## Windows
 `rub`
 or
 `g++ rubiks.cpp -o rubiks.exe -Ofast`
