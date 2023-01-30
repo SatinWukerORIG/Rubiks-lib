@@ -6,10 +6,10 @@ A Rubik's Cube scrambler written in C++
 `rub`
 or
 `g++ rubiks.cpp -o rubiks.exe -Ofast`
-I suggest using -Ofast option because security in this case is inessential
+I suggest using -Ofast
 
-## On MacOS or Linux
-Run this:
+## MacOS/Linux
+
 ```shell
 make all
 ./rubiks
