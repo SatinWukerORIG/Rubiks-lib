@@ -1,6 +1,6 @@
 TARGET = rubiks
 CXX    = g++
-FILE   = rubiks.cpp
+FILE   = main.cpp
 
 all:
 	$(CXX) $(FILE) -o $(TARGET)
