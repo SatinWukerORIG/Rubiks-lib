@@ -212,9 +212,9 @@ void Cube::make_move(int m){
             cube[4][3] = cube[2][7];
             cube[4][6] = cube[2][8];
 
-            cube[2][6] = cube[5][8];
-            cube[2][7] = cube[5][7];
-            cube[2][8] = cube[5][6];
+            cube[2][6] = cube[5][2];
+            cube[2][7] = cube[5][5];
+            cube[2][8] = cube[5][8];
 
             cube[5][2] = temp_white[0];
             cube[5][5] = temp_white[1];
