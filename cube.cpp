@@ -204,17 +204,17 @@ void Cube::make_move(int m){
         case 9: { //b'
             char temp_white[3] = {cube[0][0], cube[0][1], cube[0][2]};
 
-            cube[0][0] = cube[4][0];
+            cube[0][0] = cube[4][6];
             cube[0][1] = cube[4][3];
-            cube[0][2] = cube[4][6];
+            cube[0][2] = cube[4][0];
 
             cube[4][0] = cube[2][6];
             cube[4][3] = cube[2][7];
             cube[4][6] = cube[2][8];
 
-            cube[2][6] = cube[5][2];
+            cube[2][6] = cube[5][8];
             cube[2][7] = cube[5][5];
-            cube[2][8] = cube[5][8];
+            cube[2][8] = cube[5][2];
 
             cube[5][2] = temp_white[0];
             cube[5][5] = temp_white[1];
